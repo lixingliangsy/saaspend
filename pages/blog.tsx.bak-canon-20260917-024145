@@ -1,0 +1,145 @@
+import React from 'react'
+import Head from 'next/head'
+import { buildFaqJsonLd, buildHowToJsonLd } from '../lib/schema'
+import Layout from '../components/Layout'
+import { PRODUCT } from '../lib/product'
+import { geoPosts } from '../data/geoPosts'
+
+const posts = [
+  {
+    slug: 'what-is-saas-spend-audit',
+    title: 'What is a SaaS spend audit? Finding the subscriptions your team forgot',
+    type: 'Definitional · FAQPage',
+    query: 'what is a saas spend audit',
+    body: 'A SaaS spend audit is a structured review of every subscription your team pays for — flagging duplicate categories, forgotten tools, and a suggested savings estimate. For SMB ops and finance managers tracking tool sprawl, it turns a stale spreadsheet into a set of decisions.',
+    refs: ['https://saaspend.vercel.app/blog/what-is-saas-spend-audit'],
+  },
+  {
+    slug: 'how-to-audit-saas-subscriptions',
+    title: 'How to audit your team\'s SaaS subscriptions (step by step)',
+    type: 'How-to · HowTo',
+    query: 'how to audit saas subscriptions',
+    body: 'List each tool with its monthly cost, group by function, flag the duplicate categories, surface forgotten tools, then read the suggested savings. The audit shows the opportunity; the cancel decision stays with you. Re-run it each quarter.',
+    refs: ['https://saaspend.vercel.app/blog/how-to-audit-saas-subscriptions'],
+  },
+  {
+    slug: 'common-saas-spend-audit-mistakes',
+    title: 'Common SaaS spend audit mistakes (and how to avoid them)',
+    type: 'How-to · HowTo',
+    query: 'common saas spend audit mistakes',
+    body: 'The recurring errors: auditing only monthly tools, grouping by vendor instead of function, ignoring seat counts, skipping forgotten trials, and never re-auditing. Each has a fix — and none of them requires a finance degree.',
+    refs: ['https://saaspend.vercel.app/blog/common-saas-spend-audit-mistakes'],
+  },
+  {
+    slug: 'saas-spend-audit-tools-compared',
+    title: 'SaaS spend audit tools compared — spreadsheet, SaaSpend, and full platforms',
+    type: 'Comparison',
+    query: 'saas spend management tools compared',
+    body: 'A spreadsheet is free but goes stale; a focused audit tool like SaaSpend flags duplicates from a pasted list; a full platform connects to billing for continuous monitoring. Pick the lightest tool that removes the upkeep you actually skip.',
+    refs: ['https://saaspend.vercel.app/blog/saas-spend-audit-tools-compared'],
+  },
+  {
+    slug: 'saas-spend-audit-use-cases',
+    title: 'SaaS spend audit use cases for SMB ops and finance managers',
+    type: 'Use cases',
+    query: 'saas spend audit use cases',
+    body: 'Where the audit pays off: pre-renewal reviews, onboarding and offboarding, post-merger cleanup, quarterly finance reporting, and ongoing tool-sprawl control. The job is the same in every case — make overlap and forgotten tools visible and repeatable.',
+    refs: ['https://saaspend.vercel.app/blog/saas-spend-audit-use-cases'],
+  },
+]
+
+const faqs = [
+  {
+    "question": "What is SaaSpend — and when to use it",
+    "answer": "SaaSpend is a SaaS spend audit tool that lists your team's subscriptions and flags duplicate categories, forgotten tools, and a suggested savings number. Reach for it when your tool sprawl grows past what one spreadsheet can track."
+  },
+  {
+    "question": "How to run a SaaS spend audit in 10 minutes",
+    "answer": "A step-by-step for a first SaaS spend audit using SaaSpend: paste your tools with monthly costs, review the duplicate-category flags, and read the suggested savings. The savings figure is an estimate, not a guaranteed amount."
+  },
+  {
+    "question": "Common SaaS spend audit mistakes (and how to avoid them)",
+    "answer": "5 recurring errors teams make in a SaaS spend audit, with fixes: missing annual tools, lumping unrelated apps, ignoring seat counts, skipping forgotten trials, and not re-auditing quarterly."
+  },
+  {
+    "question": "SaaSpend vs. doing it manually",
+    "answer": "Trade-offs: speed, cost, and where human review still wins. SaaSpend automates duplicate detection; a human still judges which tool to cut. The suggested savings is an estimate based on the list you enter."
+  }
+] as { question: string; answer: string }[]
+
+const howToBlocks = [
+  {
+    "name": "How to run a SaaS spend audit in 10 minutes",
+    "steps": [
+      {
+        "name": "List your SaaS tools",
+        "text": "Paste each tool on its own line with its monthly USD cost into SaaSpend."
+      },
+      {
+        "name": "Review duplicate-category flags",
+        "text": "SaaSpend groups tools by category and flags duplicates such as two chat or two docs apps."
+      },
+      {
+        "name": "Read the suggested savings",
+        "text": "Read the suggested savings number and the forgotten-tool flags, then decide what to cut. The figure is an estimate, not a guaranteed saving."
+      }
+    ]
+  }
+] as { name: string; steps: { name: string; text: string }[] }[]
+
+export default function BlogPage() {
+  return (
+    <Layout>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd(faqs)) }}
+        />
+        {howToBlocks.map((block, i) => (
+          <script
+            key={`howto-${i}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(buildHowToJsonLd(block.name, block.steps)),
+            }}
+          />
+        ))}
+
+        <title>{`${PRODUCT.name} — Blog`}</title>
+        <meta name="description" content="Definitional and how-to posts on SaaS spend audits — what they are, how to run one, common mistakes, tool comparisons, and use cases for SMB ops and finance managers tracking tool sprawl." />
+      </Head>
+      <div className="max-w-3xl">
+        <div className="text-xs font-bold tracking-widest uppercase text-indigo-600 mb-3">Blog · GEO</div>
+        <h1 className="text-4xl font-extrabold tracking-tight mb-4">SaaS spend audits, explained</h1>
+        <p className="text-lg text-slate-600 mb-10">Own the definitional queries teams ask before they cut redundant SaaS — what an audit is, how to run one, and where the savings estimate comes from.</p>
+
+        <div className="space-y-8">
+          {posts.map((p) => (
+            <article key={p.slug} className="border-b border-slate-200 pb-8">
+              <div className="text-xs font-semibold text-indigo-600 mb-1">{p.type}</div>
+              <h2 className="text-2xl font-bold mb-2 text-slate-900">{p.title}</h2>
+              <p className="text-sm text-slate-600 mb-2"><span className="font-semibold">Target query:</span> {p.query}</p>
+              <p className="text-slate-700 leading-relaxed">{p.body}</p>
+              <p className="text-xs text-slate-400 mt-3">refs: {p.refs.join(' · ')}</p>
+            </article>
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold mt-14 mb-2 text-slate-900">Deep-dives (GEO)</h2>
+        <p className="text-sm text-slate-500 mb-6">Long-form, cited explainers. Each carries a decision-support disclaimer and frames any savings figure as an estimate.</p>
+        <div className="space-y-5">
+          {geoPosts.map((p) => (
+            <div key={p.slug} className="border-b border-slate-200 pb-5">
+              <h3 className="text-xl font-semibold">
+                <a href={`/blog/${p.slug}`} className="text-indigo-700 hover:underline">{p.title}</a>
+              </h3>
+              <p className="text-sm text-slate-600 mt-1">{p.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-xs text-slate-400 mt-8">Publish + syndicate per gtm-launch (IH + GEO indexes). Each post carries an honest, estimate-based disclaimer.</p>
+      </div>
+    </Layout>
+  )
+}

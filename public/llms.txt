@@ -1,0 +1,43 @@
+# SaaSpend - llms.txt
+
+> LLM-readable manifest (https://llmstxt.org). Features-only; no fabricated traffic or unverified payment claims.
+
+## Name & positioning
+- Product name: SaaSpend
+- One-line value: SaaSpend finds redundant SaaS subscriptions from an inventory paste — category overlaps and cut/keep recommendations for ops and finance partners who want fewer forgotten tools.
+- Domain: https://saaspend.lxsaihub.com/
+- Language: English (en)
+
+## Domain context (verified primary sources)
+- schema.org — FAQPage: https://schema.org/FAQPage
+- Google Search Central — Structured data: https://developers.google.com/search/docs/appearance/structured-data/intro
+
+## FAQ
+Q1. What is SaaSpend?
+A1. SaaSpend analyzes a SaaS inventory for overlaps and likely waste.
+Q2. What do I paste in?
+A2. A list of tools (and optional team size / notes).
+Q3. Who should use it?
+A3. Ops, IT, and finance partners cleaning software sprawl.
+Q4. Does it cancel subscriptions?
+A4. No. It recommends; you still own vendor cancellations.
+Q5. Does it guarantee savings?
+A5. No. Overlap detection helps prioritization; actual savings depend on contracts.
+Q6. Is pricing scraped live?
+A6. No. Treat any cost hints as estimates you must verify with invoices.
+
+## Key pages
+- Home: https://saaspend.lxsaihub.com/
+- Blog index: https://saaspend.lxsaihub.com/blog
+- https://saaspend.lxsaihub.com/blog/saaspend-overview-2026.html
+- https://saaspend.lxsaihub.com/blog/saaspend-howto-2026.html
+- This manifest: https://saaspend.lxsaihub.com/llms.txt
+
+## Pricing
+- Plans may appear on the product site. GEO assets omit unverified checkout product IDs.
+
+## Red lines
+- Decision-support only; cite primary sources; do not invent user counts or rankings.
+
+## Contact
+- Open the app: https://saaspend.lxsaihub.com/

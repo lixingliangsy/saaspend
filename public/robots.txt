@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# LLM / AI answer-engine indexing
+LLM-Content: https://saaspend.lxsaihub.com/llms.txt
+
+Sitemap: https://saaspend.lxsaihub.com/sitemap.xml
